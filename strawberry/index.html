@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>xat.me - strawberry</title>
+	<style>
+		* {
+			cursor: url(./inc/images/cursor.png), default;
+		}
+
+		p {
+			margin: 0px;
+			margin-top: 0px;
+			margin-bottom: 8px;
+		}
+
+		body {
+			height: 100vh;
+			padding: 0px;
+			margin: 0px;
+			font-family: 'Roboto', sans-serif;
+			line-height: 15px;
+			font-size: 10px;
+			background-color: #fff;
+			background-image: url(./inc/images/bg.png);
+			background-attachment: fixed;
+			background-repeat: repeat;
+		}
+
+		a:link,
+		a:active,
+		a:visited {
+			text-decoration: none;
+			-webkit-transition: color 0.3s ease-out;
+			-moz-transition: color 0.3s ease-out;
+			transition: color 0.3s ease-out;
+			color: #777;
+		}
+
+		a:hover {
+			text-decoration: none;
+			color: #ffc9c9;
+		}
+
+		::-moz-selection {
+			color: black;
+			background: #f9dbdd;
+		}
+
+		::selection {
+			color: black;
+			background: #f9dbdd;
+
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px;
+		}
+
+		::-webkit-scrollbar-track {
+			border: 1.2px solid white;
+			background: #ffd9d9;
+		}
+
+		::-webkit-scrollbar-thumb {
+			border-radius: 5px;
+			background: #ffd9d9;
+
+		}
+
+		#wrapper {
+			display: flex;
+			height: 100vh;
+			justify-content: center;
+			align-items: center;
+			justify-items: center;
+			flex-direction: column;
+		}
+
+		#box {
+			width: 170px;
+			background: white;
+			height: auto;
+			padding: 12px;
+			text-align: center;
+			border: 1px solid #ffd9d9;
+			-webkit-transition: all .7s ease;
+			-moz-transition: all .7s ease;
+			-o-transition: all .7s ease;
+			transition: all .7s ease;
+		}
+
+		#box img {
+			width: 100%;
+			outline: 7px solid transparent;
+			outline-offset: -10px;
+			-webkit-transition: all .7s ease;
+			-moz-transition: all .7s ease;
+			-o-transition: all .7s ease;
+			transition: all .7s ease;
+		}
+
+		#box img:hover {
+			opacity: .9;
+			outline: 7px solid #ffd9d9;
+			outline-offset: -22px;
+			-webkit-transition: all .7s ease;
+			-moz-transition: all .7s ease;
+			-o-transition: all .7s ease;
+			transition: all .7s ease;
+		}
+
+		#title {
+			margin: auto auto 10px auto;
+			font-style: italic;
+			text-transform: lowercase;
+			font-family: Georgia;
+			color: #ffbaba;
+			font-size: 25px;
+			-webkit-transition: all .7s ease;
+			-moz-transition: all .7s ease;
+			-o-transition: all .7s ease;
+			transition: all .7s ease;
+		}
+
+		#title span {
+			color: #747963;
+		}
+
+		#box #desc {
+			color: #747963;
+			background: transparent;
+			padding: 2px;
+			margin-top: 7px;
+			overflow-y: auto;
+			max-height: 42px;
+		}
+
+		#circles {
+			margin: 6px 0px 0px 0px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+		}
+
+		#circles a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 12px;
+			border: 3px double white;
+			font-family: calibri;
+			color: #ffffff;
+			background: #ffbaba;
+			border-radius: 100%;
+			-webkit-transition: all .7s ease;
+			-moz-transition: all .7s ease;
+			-o-transition: all .7s ease;
+			transition: all .7s ease;
+		}
+
+		#circles a:nth-child(even) {
+			background: #747963;
+		}
+
+		#circles a:hover {
+			color: #ffbaba;
+			background: white;
+			border: 3px double #ffbaba;
+			-webkit-animation: ripple 1s linear infinite;
+			-moz-animation: ripple 1s linear infinite;
+			-ms-animation: ripple 1s linear infinite;
+			-o-animation: ripple 1s linear infinite;
+			animation: ripple 1s linear infinite;
+		}
+
+		@keyframes ripple {
+			0% {
+				transform: translate(0%, 0%);
+			}
+
+			80% {
+				transform: translate(0%, 0%) scale(1.15);
+			}
+
+			100% {
+				transform: translate(0%, 0%) scale(1);
+				opacity: 1;
+			}
+		}
+
+		#tri {
+			position: fixed;
+			width: 350px;
+			height: 200px;
+			background: #ffd9d9;
+			bottom: -125px;
+			left: -105px;
+			border-top: 6px double white;
+			z-index: 39999;
+			transform: rotate(40deg);
+			-webkit-transform: rotate(40deg);
+			-moz-transform: rotate(40deg);
+			-ms-transform: rotate(40deg);
+			-o-transform: rotate(40deg);
+
+		}
+
+		#tri2 {
+			position: fixed;
+			width: 370px;
+			height: 200px;
+			background: #ffd9d9;
+			top: -90px;
+			right: -140px;
+			border-bottom: 6px double white;
+			z-index: 39999999;
+			transform: rotate(40deg);
+			-webkit-transform: rotate(40deg);
+			-moz-transform: rotate(40deg);
+			-ms-transform: rotate(40deg);
+			-o-transform: rotate(40deg);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="box">
+			<div id="title"><span>straw</span>berry</div>
+			<img src="./inc/images/img.jpg">
+			<div id="desc">
+				bon - twenty7 - cali<br>
+				your quote/info goes here<br>
+				more text<br>
+				more text<br>
+				more text<br>
+				more text<br>
+				more text<br>
+				more text<br>
+				more text
+			</div>
+		</div>
+		<div id="circles">
+			<a href="https://xat.me/princess" target="_blank">.01</a>
+			<a href="https://xat.me/princess" target="_blank">.02</a>
+			<a href="https://xat.me/princess" target="_blank">.03</a>
+			<a href="https://xat.me/princess" target="_blank">.04</a>
+			<a href="https://xat.me/princess" target="_blank">.05</a>
+		</div>
+		<div id="tri"></div>
+		<div id="tri2"></div>
+</body>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>xat.me - spacebuns</title>
+	<style>
+		*,
+		body {
+			cursor: url(./inc/images/cursor.png), default;
+			margin: 0;
+			padding: 0;
+		}
+
+		html,
+		body {
+			background-color: #f6f6f6;
+			height: 100%;
+		}
+
+		.wrapper {
+			display: flex;
+			height: 100%;
+			justify-content: center;
+			align-items: center;
+			justify-items: center;
+		}
+
+		.box {
+			width: auto;
+			border: 1px solid #e2999e;
+			height: auto;
+			text-align: center;
+			box-shadow: 10px 10px rgba(226, 153, 158, .50);
+		}
+
+		.box img {
+			width: 200px;
+		}
+
+		.nav {
+			margin-top: 4px;
+			opacity: 1;
+			padding: 2px;
+			transition: 0.4s;
+			text-align: center;
+			background: #e2999e;
+		}
+
+		.nav a {
+			text-decoration: none;
+			font-size: 13px;
+			font-family: 'Pacifico', cursive;
+			display: inline-block;
+			text-align: center;
+			width: 17px;
+			height: 14px;
+			padding: 5px;
+			text-shadow: -1px 0 #c1c1c1, 0 1px #c1c1c1, 1px 0 #c1c1c1, 0 -1px #c1c1c1;
+			color: #FFF;
+			-webkit-transition: all 0.5s ease-in-out;
+			-moz-transition: all 0.5s ease-in-out;
+			-ms-transition: all 0.5s ease-in-out;
+			-o-transition: all 0.5s ease-in-out;
+			transition: all 0.5s ease-in-out;
+		}
+
+		.title {
+			position: fixed;
+			opacity: 1;
+			margin-left: -44px;
+			margin-top: -41px;
+			background: transparent;
+			width: 350px;
+			height: 25px;
+			padding: 10px;
+			text-align: center;
+			font-family: 'Pacifico', cursive;
+			font-size: 26px;
+			z-index: 10;
+			color: #e2999e;
+			transition: all 0.9s ease;
+			-o-transition-transition: all 0.9s ease;
+			-webkit-transition: all 0.9s ease;
+			-moz-transition: all 0.9s ease;
+			text-shadow: -1px 0 #c1c1c1, 0 1px #c1c1c1, 1px 0 #c1c1c1, 0 -1px #c1c1c1;
+		}
+
+		.desc {
+			opacity: 0;
+			position: fixed;
+			overflow: hidden;
+			width: 0px;
+			height: 0px;
+			margin: 30px auto auto auto;
+			left: 0;
+			right: 0;
+			padding: 0px;
+			text-align: center;
+			outline: 1px solid #fff;
+			outline-offset: -6px;
+			font-family: calibri;
+			font-size: 9px;
+			text-transform: normal;
+			z-index: 9;
+			color: #848484;
+			overflow: hidden;
+			background-color: white;
+			border: 1px solid #eee;
+			box-shadow: 0px 0px 5px #ddd;
+			transition: all 0.9s ease-out;
+			-o-transition-transition: all 0.9s ease-out;
+			-webkit-transition: all 0.9s ease-out;
+			-moz-transition: all 0.9s ease-out;
+		}
+
+		.desc h2 {
+			color: #e2999e;
+			margin-bottom: 8px;
+		}
+
+		.box .nav a.d1:hover div.d1,
+		.box .nav a.d2:hover div.d2,
+		.box .nav a.d3:hover div.d3,
+		.box .nav a.d4:hover div.d4,
+		.box .nav a.d5:hover div.d5 {
+			opacity: 1;
+			width: 171px;
+			height: 50px;
+			padding: 10px;
+		}
+
+		.footer {
+			position: fixed;
+			bottom: 0;
+			margin-bottom: 0px;
+			left: 0;
+			margin-left: 0px;
+			height: 50px;
+			background-color: #e2999e;
+			z-index: 10;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			color: #fff;
+		}
+
+		.footer>* {
+			flex-grow: 1;
+			width: calc(100% / 3);
+		}
+
+		.footer-center {
+			text-align: center;
+			letter-spacing: 1px;
+			font-size: 12px;
+			color: #fff;
+		}
+
+		.footer-left {
+			margin-left: 20px;
+		}
+
+		.footer-right {
+			display: flex;
+			justify-content: flex-end;
+			margin-right: 20px;
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="box">
+			<div class="title">spacebuns</div>
+			<img src="./inc/images/img.jpg">
+			<div class="nav">
+				<a class="d1" href="https://xat.me/princess" target="_blank">01
+					<div class="desc d1">
+						<h2>name 1</h2>something short and sweet about your friend.
+					</div>
+				</a> /
+				<a class="d2" href="https://xat.me/princess" target="_blank">02
+					<div class="desc d2">
+						<h2>name 2</h2>something short and sweet about your friend.
+					</div>
+				</a> /
+				<a class="d3" href="https://xat.me/princess" target="_blank">03
+					<div class="desc d3">
+						<h2>name 3</h2>something short and sweet about your friend.
+					</div>
+				</a> /
+				<a class="d4" href="https://xat.me/princess" target="_blank">04
+					<div class="desc d4">
+						<h2>name 4</h2>something short and sweet about your friend.
+					</div>
+				</a> /
+				<a class="d5" href="https://xat.me/princess" target="_blank">05
+					<div class="desc d5">
+						<h2>name 5</h2>something short and sweet about your friend.
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-left">text on the left</div>
+			<div class="footer-center">center text</div>
+			<div class="footer-right">♡</div>
+		</div>
+</body>

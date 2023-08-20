@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>xat.me - stitch</title>
+	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<style>
+		* {
+			cursor: url(./inc/images/cursor.png), default;
+		}
+
+		@font-face {
+			font-family: 'Typewriter';
+			src: url('inc/type-writer.ttf');
+		}
+
+		body {
+			margin: 0px;
+		}
+
+		#screen {
+			background-color: #fcedda;
+			height: 100vh;
+			width: 100vw;
+			position: fixed;
+			z-index: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			transition: all ease-in-out 0.4s;
+		}
+
+		a:focus {
+			outline: 0;
+		}
+
+		#cont {
+			height: 342px;
+			width: 862px;
+			margin-top: calc(50vh - 171px);
+			margin-left: calc(50vw - 431px);
+			position: fixed;
+		}
+
+		#sidebar {
+			height: 280px;
+			width: 250px;
+			background-image: url('./inc/images/img.jpg');
+			background-size: cover;
+			background-position: center;
+			border-top: 5px solid #f48d90;
+			border-left: 5px solid #f48d90;
+			border-right: 5px solid #f48d90;
+			border-bottom: 6px solid #f48d90;
+			outline: 1px dashed black;
+			margin-top: 1px;
+			margin-left: 1px;
+			position: fixed;
+			z-index: 9;
+		}
+
+		#menu {
+			height: 40px;
+			width: 252px;
+			background-color: #394843;
+			color: white;
+			font-size: 17px;
+			text-align: center;
+			line-height: 40px;
+			padding: 5px;
+			margin-top: 292px;
+			position: fixed;
+			z-index: 10;
+		}
+
+		#menu a,
+		a:active,
+		a:visited {
+			color: white;
+		}
+
+		#menu a:hover {
+			background: #f48d90;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-moz-background-clip: text;
+			-ms-background-clip: text;
+			-o-background-clip: text;
+			color: transparent;
+		}
+
+		#title {
+			height: 40px;
+			width: 540px;
+			background: #394843;
+			color: white;
+			font-family: 'Typewriter';
+			font-size: 8px;
+			text-align: center;
+			line-height: 40px;
+			word-spacing: 2px;
+			padding: 5px;
+			margin-left: 312px;
+			position: fixed;
+		}
+
+		#description {
+			height: auto;
+			width: 518px;
+			color: black;
+			font-family: 'Cutive Mono';
+			font-size: 11.5px;
+			text-align: justify;
+			line-height: 1.5;
+			border: 5px solid #f48d90;
+			outline: 1px dashed black;
+			padding: 10px;
+			margin-top: 100px;
+			margin-left: 312px;
+			position: fixed;
+			z-index: 9;
+		}
+
+		#description a,
+		a:active,
+		a:visited {
+			color: black;
+		}
+
+		#description a:hover {
+			font-style: italic;
+			text-decoration: underline;
+			text-decoration-style: wavy;
+		}
+
+		#heartone {
+			height: 20px;
+			width: 20px;
+			color: #394843;
+			font-size: 20px;
+			margin-top: 95px;
+			margin-left: 850px;
+			transform: rotate(180deg);
+			position: fixed;
+			z-index: 10;
+		}
+
+		#hearttwo {
+			height: 20px;
+			width: 20px;
+			color: #394843;
+			font-size: 20px;
+			margin-top: 275px;
+			margin-left: 302px;
+			position: fixed;
+			z-index: 10;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="screen">
+		<div id="cont">
+			<div id="sidebar"></div>
+			<div id="menu">
+				<a href="https://xat.me/princess" target="_blank" title="1"><i class="fas fa-heart"></i></a> &nbsp;&nbsp;
+				<a href="https://xat.me/princess" target="_blank" title="2"><i class="fas fa-heart"></i></a> &nbsp;&nbsp;
+				<a href="https://xat.me/princess" target="_blank" title="3"><i class="fas fa-heart"></i></a> &nbsp;&nbsp;
+				<a href="https://xat.me/princess" target="_blank" title="4"><i class="fas fa-heart"></i></a> &nbsp;&nbsp;
+				<a href="https://xat.me/princess" target="_blank" title="5"><i class="fas fa-heart"></i></a>
+			</div>
+			<div id="title">stitch</div>
+			<div id="heartone"><i class="fas fa-heart"></i></div>
+			<div id="description">you can put anything here. lorem ipsum dolor sit amet, consectetur adipiscing elit. duis a
+				nisl est. morbi cursus, leo nec semper sollicitudin, ex nisl ultricies erat, in consequat nibh turpis sit amet
+				mauris. nulla urna erat, placerat sed lectus eget, vehicula faucibus turpis. duis sagittis sem eget purus
+				pellentesque pretium. maecenas facilisis sed lectus ac malesuada. praesent bibendum nulla eu ligula aliquet
+				consequat. aenean dictum enim enim, feugiat facilisis lacus mollis a. integer rhoncus vestibulum diam, at
+				lobortis est. donec consequat nec sapien sit amet. donec nec pharetra sem, vitae tempor.
+			</div>
+			<div id="hearttwo"><i class="fas fa-heart"></i></div>
+		</div>
+
+	</div>
+</body>
