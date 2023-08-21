@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>xatspace - karl</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url(https://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png?imageOpt=1&fit=bounds&width=2163);
+            background-position: center 80%;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        #name {
+            display: none;
+            position: fixed;
+            bottom: 53%;
+            left: 41%;
+            text-align: center;
+            color: #FFF;
+            font-size: 1.6em;
+            padding: 0.3em 0.5em;
+            border-radius: 100px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #pkmn {
+            display: flex;
+            position: fixed;
+            bottom: 25%;
+            left: 40%;
+            z-index: 9999;
+            min-height: 256px;
+            min-width: 256px;
+            z-index: 998;
+            transform-origin: 50% 100%;
+            animation: tada 2s 1;
+        }
+
+        #pkmn img {
+            height: 100%;
+            width: 100%;
+            border: 0;
+        }
+
+        #shiny {
+            position: absolute;
+            bottom: 30%;
+            left: 42%;
+            height: 200px;
+            width: 200px;
+            mix-blend-mode: screen;
+            z-index: 999;
+        }
+
+        #pokeball {
+            position: fixed;
+            bottom: 0;
+            left: 47.5%;
+            width: 100px;
+            cursor: pointer;
+            z-index: 9999;
+            animation-name: tada;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes tada {
+            0% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            10%,
+            20% {
+                -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+                transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            }
+
+            30%,
+            50%,
+            70%,
+            90% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            }
+
+            40%,
+            60%,
+            80% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            }
+
+            100% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Best viewed in vertical mode! -->
+    <div id="name"></div>
+    <div id="pkmn"></div>
+    <img id="pokeball" src="./inc/images/pokeball.png" onclick="generatePokemon()" data-toggle="tooltip"
+        title="Generate New!" />
+    <img id="shiny"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+</body>
+<script>
+    const pokemonPath = "https://db.pokemongohub.net/images/ingame/normal/"
+
+    // Create element for audio cry
+    let obj = document.createElement("audio")
+
+    const generatePokemon = () => {
+        const pokeArr = [133, 134, 135, 136, 196, 197, 470, 471, 700, 260, 571, 245, 392, 9, 503, 715, 389, 445, 212, 445, 376, 359, 792, 435, 466, 644, 3, 675, 254, 448, 385, 473, 386, 232, 750, 709, 151, 673, 646];
+        const friends = {
+            700: 'princess',
+            197: 'umbreon',
+            3: 'letspootogether'
+        };
+        let pokenum = pokeArr[Math.floor(Math.random() * pokeArr.length)];
+        let shiny = Math.floor(Math.random() * 10)
+        let pokemon = `${pokemonPath}pokemon_icon_${pokenum}_00${shiny == 1 ? '_shiny' : ''}.png`
+
+        // Hide elements
+        $("#pkmn").hide().css("visibility", "hidden")
+        $("#shiny").attr("src", "").hide()
+        $("#name, #shadow").hide()
+
+        // Check if image of chosen Pokémon exists since not all are available yet
+        checkImage(
+            pokemon,
+            () => {
+                // If yes, change the name, image and the cry
+                getName(pokenum, shiny)
+                $("#pkmn").html(
+                    Object.keys(friends).includes(pokenum.toString()) ? `<a href="https://xat.me/${friends[pokenum.toString()]}"><img src="${pokemon}" /></a>` : `<img src="${pokemon}" />`
+                ).fadeIn()
+                $("#pkmn").css("visibility", "visible")
+                $("#shadow").show()
+
+                // If shiny, then show shiny animation
+                if(shiny == 1) {
+                    setTimeout(() => {
+                        $("#shiny").attr("src", "./inc/images/shiny.gif").show()
+                        setTimeout(() => {
+                            $("#shiny").attr("src", "").hide()
+                        }, 1000)
+                    }, 500)
+                }
+            },
+            () => {
+                // If not generate a new Pokémon
+                generatePokemon()
+            }
+        )
+    }
+
+    // Function to check if image exists
+    const checkImage = (src, success, fail) => {
+        var img = new Image()
+        img.onload = success
+        img.onerror = fail
+        img.src = src
+    }
+
+    // Function to get Pokémon name from pokeapi
+    async function getName(num, shiny) {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`, {})
+        const json = await response.json()
+        $("#name").html(`${shiny == 1 ? 'Shiny ' : ''}${capitalize(json.name)} - ${Math.floor(Math.random() * 3000)} CP`).fadeIn()
+    }
+    // Capitalise first letter of a string
+    const capitalize = (str) => {
+        return str.toLowerCase().replace(/\b[a-z]/g, (letter) => {
+            return letter.toUpperCase()
+        })
+    }
+    // Pad a number with leading zeroes for the cry
+    const pad = (str, max) => {
+        str = str.toString()
+        return str.length < max ? pad("0" + str, max) : str
+    }
+    // Generate a Pokémon on first load
+    generatePokemon()
+</script>
+
+</html>
