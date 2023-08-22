@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+<head>
+    <title>wolfie</title>
+    <link rel="shortcut icon" href="./inc/images/wolf.png">
+    <link href="https://api.fontshare.com/v2/css?f[]=work-sans@300,600,400&f[]=boska@400,700,900&display=swap"
+        rel="stylesheet">
+    <style type="text/css">
+        :root {
+
+            --background: #272323;
+            --container: #c5c5c4;
+            --header: #c5c5c4;
+
+            --border: #a2a8b1;
+            --text: #5b6d89;
+            --text-bg: #c5c5c4;
+            --accent: #173463;
+            --font-size: 13px;
+
+        }
+
+        /* --- scrollbars --- */
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--accent);
+        }
+
+        ::-webkit-scrollbar {
+            background-color: transparent;
+            width: 1px;
+            height: 1px;
+        }
+
+        .tmblr-iframe--unified-controls {
+            transform: scale(0.8, 0.8);
+            transform-origin: top right;
+        }
+
+        /* --- basics --- */
+
+        body {
+            background-color: var(--background);
+            background-repeat: repeat;
+            color: var(--text);
+            font-family: 'Work Sans', sans-serif;
+            font-size: var(--font-size);
+            line-height: 1.5em;
+            font-weight: 400;
+            text-align: left;
+            margin: 0;
+        }
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+            -moz-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+        }
+
+        a:hover {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        p a,
+        li a {
+            border-bottom: 1px solid var(--border);
+        }
+
+        p a:hover,
+        li a:hover {
+            border-bottom: 1px solid var(--accent);
+        }
+
+        img {
+            border: none;
+            text-decoration: none;
+        }
+
+        u {
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        small,
+        sub,
+        sup,
+        big {
+            font-size: var(--font-size);
+            line-height: 1.5em;
+            vertical-align: baseline;
+        }
+
+        blockquote {
+            padding: 0px 5px 0px 15px;
+            border-left: 1px solid var(--border);
+            margin-left: 5px;
+            margin-right: 0px;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+
+        ul li {
+            list-style-type: disc;
+        }
+
+        hr {
+            border: none;
+            border-bottom: 1px solid var(--border);
+            width: calc(100% + 40px);
+            margin: 0px -20px 20px -20px;
+        }
+
+        h1 {
+            font-weight: 900;
+            margin: 0px;
+            font-size: 2em;
+            line-height: 1em;
+            font-family: 'Boska', serif;
+        }
+
+        /* --- container --- */
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 694px;
+            height: 550px;
+            border: 1px solid var(--border);
+            background-color: var(--container);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .header {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--header);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            border-right: 1px solid var(--border);
+        }
+
+        .header-icon img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .header-quote {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .header-quote:after {
+            content: '';
+            position: absolute;
+            top: 15.5px;
+            left: 40px;
+            width: 10px;
+            height: 1px;
+            background: var(--border);
+            display: block;
+        }
+
+        .header-title {
+            font-size: 1.1em;
+        }
+
+        .header-title b {
+            letter-spacing: 0.5px;
+            word-spacing: 1px;
+        }
+
+        .left {
+            position: absolute;
+            top: 81px;
+            left: 0px;
+            width: 80px;
+            height: calc(100% - 81px - 20px);
+            padding-top: 20px;
+            border-right: 1px solid var(--border);
+            background-color: var(--header);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: flex-start;
+            gap: 20px;
+        }
+
+        .left a {
+            width: 35px;
+            height: 35px;
+            margin: 0px 20px;
+            border-radius: 30px;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left a:after {
+            content: attr(aria-label);
+            opacity: 0;
+            position: absolute;
+            max-width: 60px;
+            min-height: 35px;
+            text-align: center;
+            background-color: var(--header);
+            font-size: 1em;
+            line-height: 1em;
+            font-family: 'Boska', serif;
+            font-weight: 400;
+            transition: all ease 0.8s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .left a:hover:after {
+            opacity: 1;
+        }
+
+        .stats {
+            position: absolute;
+            top: 81px;
+            left: 81px;
+            width: 240px;
+            height: 260px;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .stat b {
+            color: var(--header);
+            background-color: var(--accent);
+            border-radius: 5px;
+            padding: 2px 6px;
+        }
+
+        .bars {
+            position: absolute;
+            top: 381px;
+            left: 81px;
+            width: 240px;
+            height: 129px;
+            border-right: 1px solid var(--border);
+            background-color: rgba(255, 255, 255, 0.15);
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .bar-text {
+            width: 100%;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .bar-outer {
+            width: calc(100% - 6px);
+            height: 8px;
+            border: 1px solid var(--border);
+            padding: 2px;
+            border-radius: 6px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .bar {
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 5px;
+            opacity: 0.7;
+        }
+
+        .bar-outer:last-of-type {
+            margin: 0px;
+        }
+
+        .colours {
+            position: absolute;
+            top: 81px;
+            left: 361px;
+            width: 90px;
+            height: 369px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cblock {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            border-radius: 5px;
+        }
+
+        .cblock:nth-of-type(1) {
+            opacity: 0.2;
+        }
+
+        .cblock:nth-of-type(2) {
+            opacity: 0.4;
+        }
+
+        .cblock:nth-of-type(3) {
+            opacity: 0.6;
+        }
+
+        .cblock:nth-of-type(4) {
+            opacity: 0.8;
+        }
+
+        .cblock:nth-of-type(5) {
+            opacity: 1;
+        }
+
+        .timeline {
+            position: absolute;
+            top: 81px;
+            left: 451px;
+            width: 203px;
+            height: 329px;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .timeline h2 {
+            margin: 0px;
+            padding: 0px 20px;
+            height: 10px;
+            border: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline h2:before {
+            content: '';
+            position: absolute;
+            margin-left: -24.5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .tl-text {
+            padding: 10px 0px 20px 20px;
+            border-left: 1px solid var(--accent);
+        }
+
+        .tl-text:last-of-type {
+            padding: 10px 0px 10px 20px;
+        }
+
+        .name {
+            position: absolute;
+            top: 450px;
+            left: 361px;
+            width: 333px;
+            height: 100px;
+            border-top: 1px solid var(--border);
+        }
+
+        .name .first,
+        .name .last {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Boska', serif;
+            line-height: 1em;
+        }
+
+        .name .first {
+            top: 10px;
+            font-weight: 900;
+            font-size: 3em;
+            opacity: 0.9;
+        }
+
+        .name .last {
+            top: -10px;
+            opacity: 0.5;
+            font-size: 2.5em;
+            font-weight: 700;
+            -webkit-text-stroke: 1px var(--text);
+            color: var(--header);
+        }
+
+        /* --- credit --- */
+
+        .credit a {
+            position: fixed;
+            font-size: 14px;
+            right: 10px;
+            bottom: 10px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--text-bg);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="container">
+
+        <!-- edit content here -->
+
+        <div class="header">
+            <div class="header-icon">
+                <!-- icon image. size is 80 x 80 -->
+
+                <img src="./inc/images/wolf.png">
+            </div>
+
+            <div class="header-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-quotes" width="25"
+                    height="25" viewBox="0 0 24 24" stroke-width="1" stroke="var(--accent)" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 12c-1.333 -1.854 -1.333 -4.146 0 -6"></path>
+                    <path d="M8 12c-1.333 -1.854 -1.333 -4.146 0 -6"></path>
+                    <path d="M16 18c1.333 -1.854 1.333 -4.146 0 -6"></path>
+                    <path d="M20 18c1.333 -1.854 1.333 -4.146 0 -6"></path>
+                </svg>
+            </div>
+
+            <div class="header-title">
+                The moon was crying too, <b>but the wolf never knew. </b>
+            </div>
+        </div>
+
+        <div class="left">
+
+            <a href="https://xat.com/help" target="_blank" aria-label="help">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="25" height="25"
+                    viewBox="0 0 24 24" stroke-width="1" stroke="var(--accent)" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+                </svg>
+            </a>
+
+            <a href="https://forum.xat.com/profile/56464/" aria-label="forum">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="25"
+                    height="25" viewBox="0 0 24 24" stroke-width="1" stroke="var(--accent)" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+                    <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+                    <path d="M19 11h2m-1 -1v2"></path>
+                </svg>
+            </a>
+
+            <a href="https://forum.xat.com/clubs/166-help-fiesta/" aria-label="fiesta">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-haze-moon" width="25"
+                    height="25" viewBox="0 0 24 24" stroke-width="1" stroke="var(--accent)" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M3 16h18"></path>
+                    <path d="M3 20h18"></path>
+                    <path
+                        d="M8.296 16c-2.268 -1.4 -3.598 -4.087 -3.237 -6.916c.443 -3.48 3.308 -6.083 6.698 -6.084v.006h.296c-1.991 1.916 -2.377 5.03 -.918 7.405c1.459 2.374 4.346 3.33 6.865 2.275a6.888 6.888 0 0 1 -2.777 3.314">
+                    </path>
+                </svg>
+            </a>
+
+            <a href="https://steamcommunity.com/profiles/76561198351414509/" aria-label="steam">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-2" width="25"
+                    height="25" viewBox="0 0 24 24" stroke-width="1" stroke="var(--accent)" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M16.418 4.157a8 8 0 0 0 0 15.686"></path>
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                </svg>
+            </a>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <b>name</b>
+                <span>wolfie</span>
+            </div>
+
+            <div class="stat">
+                <b>age</b>
+                <span>23</span>
+            </div>
+
+            <div class="stat">
+                <b>pronouns</b>
+                <span>he/him</span>
+            </div>
+
+            <div class="stat">
+                <b>location</b>
+                <span>california</span>
+            </div>
+
+            <div class="stat">
+                <b>star sign</b>
+                <span>libra</span>
+            </div>
+
+            <div class="stat">
+                <b>playing</b>
+                <span>zelda breath of the wild</span>
+            </div>
+
+        </div>
+
+        <div class="bars">
+
+            <div class="bar-text">
+                <b>sleep</b>
+                <span>14%</span>
+            </div>
+            <div class="bar-outer">
+                <div class="bar" style="width:14%;"></div>
+            </div>
+
+            <div class="bar-text">
+                <b>goals</b>
+                <span>3/4</span>
+            </div>
+            <div class="bar-outer">
+                <div class="bar" style="width:75%;"></div>
+            </div>
+
+            <div class="bar-text">
+                <b>gaming</b>
+                <span>46%</span>
+            </div>
+            <div class="bar-outer">
+                <div class="bar" style="width:46%;"></div>
+            </div>
+
+        </div>
+
+        <div class="colours">
+            <div class="cblock"></div>
+            <div class="cblock"></div>
+            <div class="cblock"></div>
+            <div class="cblock"></div>
+            <div class="cblock"></div>
+        </div>
+
+        <div class="timeline">
+            <a href="https://xat.me/princess" target="_blank">
+                <h2>sylveon</h2>
+            </a>
+            <div class="tl-text">
+                she made this xatspace.
+            </div>
+
+            <a href="https://xat.me/night" target="_blank">
+                <h2>night</h2>
+            </a>
+            <div class="tl-text">
+                xat bff, fex chief.
+            </div>
+
+            <a href="https://xat.me/rose" target="_blank">
+                <h2>eevee</h2>
+            </a>
+            <div class="tl-text">
+                great friend, fex main.
+            </div>
+
+            <a href="https://xat.me/kait" target="_blank">
+                <h2>espeon</h2>
+            </a>
+            <div class="tl-text">
+                she always make me laugh.
+            </div>
+
+            <a href="https://xat.me/cosmic" target="_blank">
+                <h2>vaporeon</h2>
+            </a>
+            <div class="tl-text">
+                loves swimming.
+            </div>
+
+            <a href="https://xat.me/dann" target="_blank">
+                <h2>leafeon</h2>
+            </a>
+            <div class="tl-text">
+                the sunniest.
+            </div>
+
+        </div>
+
+        <div class="name">
+            <div class="last">1550880164</div>
+            <div class="first">wolfie</div>
+        </div>
+    </div>
+</body>
+<script>
+    "use strict";
+
+    var canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d'),
+        w = canvas.width = window.innerWidth,
+        h = canvas.height = window.innerHeight,
+
+        hue = 217,
+        stars = [],
+        count = 0,
+        maxStars = 1400;
+
+    // Thanks @jackrugile for the performance tip! https://codepen.io/jackrugile/pen/BjBGoM
+    // Cache gradient
+    var canvas2 = document.createElement('canvas'),
+        ctx2 = canvas2.getContext('2d');
+    canvas2.width = 100;
+    canvas2.height = 100;
+    var half = canvas2.width / 2,
+        gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    gradient2.addColorStop(0.025, '#fff');
+    gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    gradient2.addColorStop(1, 'transparent');
+
+    ctx2.fillStyle = gradient2;
+    ctx2.beginPath();
+    ctx2.arc(half, half, half, 0, Math.PI * 2);
+    ctx2.fill();
+
+    // End cache
+
+    function random(min, max) {
+        if(arguments.length < 2) {
+            max = min;
+            min = 0;
+        }
+
+        if(min > max) {
+            var hold = max;
+            max = min;
+            min = hold;
+        }
+
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function maxOrbit(x, y) {
+        var max = Math.max(x, y),
+            diameter = Math.round(Math.sqrt(max * max + max * max));
+        return diameter / 2;
+    }
+
+    var Star = function () {
+
+        this.orbitRadius = random(maxOrbit(w, h));
+        this.radius = random(60, this.orbitRadius) / 12;
+        this.orbitX = w / 2;
+        this.orbitY = h / 2;
+        this.timePassed = random(0, maxStars);
+        this.speed = random(this.orbitRadius) / 1200000;
+        this.alpha = random(2, 10) / 10;
+
+        count++;
+        stars[count] = this;
+    }
+
+    Star.prototype.draw = function () {
+        var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+            y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+            twinkle = random(10);
+
+        if(twinkle === 1 && this.alpha > 0) {
+            this.alpha -= 0.05;
+        } else if(twinkle === 2 && this.alpha < 1) {
+            this.alpha += 0.05;
+        }
+
+        ctx.globalAlpha = this.alpha;
+        ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+        this.timePassed += this.speed;
+    }
+
+    for(var i = 0; i < maxStars; i++) {
+        new Star();
+    }
+
+    function animation() {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+        ctx.fillRect(0, 0, w, h)
+
+        ctx.globalCompositeOperation = 'lighter';
+        for(var i = 1, l = stars.length; i < l; i++) {
+            stars[i].draw();
+        };
+
+        window.requestAnimationFrame(animation);
+    }
+
+    animation();
+</script>
+
+</html>
