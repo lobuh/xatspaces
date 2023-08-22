@@ -6,20 +6,28 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <style>
+        html,
         body {
-            background-image: url(https://media-s3-us-east-1.ceros.com/hype-beast/images/2018/07/13/a9a51bc0b8d626db493ab5f9a971b043/background-hero.png?imageOpt=1&fit=bounds&width=2163);
+            background-image: url(./inc/images/bg.png);
             background-position: center 80%;
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
             overflow: hidden;
+            height: 100%;
+        }
+
+        #wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            grid-template-columns: repeat(5, 1fr);
+            height: 100%;
         }
 
         #name {
-            display: none;
-            position: fixed;
-            bottom: 53%;
-            left: 41%;
+            display: flex;
             text-align: center;
             color: #FFF;
             font-size: 1.6em;
@@ -29,14 +37,14 @@
             z-index: 999;
         }
 
+        #pkmn-div {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+
         #pkmn {
-            display: flex;
-            position: fixed;
-            bottom: 25%;
-            left: 40%;
-            z-index: 9999;
-            min-height: 256px;
-            min-width: 256px;
+            grid-area: a;
             z-index: 998;
             transform-origin: 50% 100%;
             animation: tada 2s 1;
@@ -49,9 +57,8 @@
         }
 
         #shiny {
-            position: absolute;
-            bottom: 30%;
-            left: 42%;
+            grid-area: a;
+            justify-self: center;
             height: 200px;
             width: 200px;
             mix-blend-mode: screen;
@@ -61,7 +68,6 @@
         #pokeball {
             position: fixed;
             bottom: 0;
-            left: 47.5%;
             width: 100px;
             cursor: pointer;
             z-index: 9999;
@@ -107,18 +113,19 @@
 
 <body>
     <!-- Best viewed in vertical mode! -->
-    <div id="name"></div>
-    <div id="pkmn"></div>
-    <img id="pokeball" src="./inc/images/pokeball.png" onclick="generatePokemon()" data-toggle="tooltip"
-        title="Generate New!" />
-    <img id="shiny"
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+    <div id="wrapper">
+        <div id="name"></div>
+        <div id="pkmn-div">
+            <div id="pkmn"></div>
+            <img id="shiny"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+        </div>
+        <img id="pokeball" src="./inc/images/pokeball.png" onclick="generatePokemon()" data-toggle="tooltip"
+            title="Generate New!" />
+    </div>
 </body>
 <script>
     const pokemonPath = "https://db.pokemongohub.net/images/ingame/normal/"
-
-    // Create element for audio cry
-    let obj = document.createElement("audio")
 
     const generatePokemon = () => {
         const pokeArr = [7, 133, 134, 135, 136, 144, 145, 146, 149, 150, 151, 196, 197, 243, 244, 245, 248, 249, 250, 373, 376, 377, 378, 379, 380, 381, 382, 383, 384, 445, 470, 471, 480, 481, 482, 483, 484, 485, 486, 487, 488, 635, 638, 639, 640, 641, 642, 643, 644, 645, 646, 700, 706, 716, 717, 718, 772, 773, 784, 785, 786, 787, 788, 789, 790, 791, 792, 800, 887, 888, 889, 890, 891, 892, 894, 895, 896, 897, 898, 905, 998, 1001, 1002, 1003, 1004, 1007, 1008];
@@ -134,7 +141,7 @@
         // Hide elements
         $("#pkmn").hide().css("visibility", "hidden")
         $("#shiny").attr("src", "").hide()
-        $("#name, #shadow").hide()
+        $("#name").hide()
 
         // Check if image of chosen Pokémon exists since not all are available yet
         checkImage(
@@ -146,7 +153,6 @@
                     Object.keys(friends).includes(pokenum.toString()) ? `<a href="https://xat.me/${friends[pokenum.toString()]}"><img src="${pokemon}" /></a>` : `<img src="${pokemon}" />`
                 ).fadeIn()
                 $("#pkmn").css("visibility", "visible")
-                $("#shadow").show()
 
                 // If shiny, then show shiny animation
                 if(shiny == 1) {
